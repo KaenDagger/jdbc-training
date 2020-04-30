@@ -77,8 +77,18 @@ public class JDBCExecutor {
 //            List<Order> orders = orderDAO.getOrdersForCustomer(789);
 //            orders.forEach(System.out::println);
 
+//            Order & Limit
+//            CustomerDao customerDAO = new CustomerDao(connection);
+//            customerDAO.findAllSorted(20).forEach(System.out::println);
+
+//            Paging
             CustomerDao customerDAO = new CustomerDao(connection);
             customerDAO.findAllSorted(20).forEach(System.out::println);
+            System.out.println("Paged");
+            for(int i=1;i<3;i++){
+                System.out.println("Page number: " + i);
+                customerDAO.findAllPaged(10, i).forEach(System.out::println);
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
