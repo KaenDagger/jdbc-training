@@ -1,7 +1,9 @@
 package io.kaen.dagger;
 
 import io.kaen.dagger.dao.CustomerDao;
+import io.kaen.dagger.dao.OrderDAO;
 import io.kaen.dagger.model.Customer;
+import io.kaen.dagger.model.Order;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -40,25 +42,30 @@ public class JDBCExecutor {
 //            customer = customerDao.update(customer);
 //            System.out.println(customer.getFirstName() + " " + customer.getLastName() + " " +
 //                    customer.getEmail());
+//
+//            Customer customer = new Customer();
+//            customer.setFirstName("John");
+//            customer.setLastName("Adams");
+//            customer.setEmail("jadams.wh.gov");
+//            customer.setAddress("1234 Main St");
+//            customer.setCity("Arlington");
+//            customer.setState("VA");
+//            customer.setPhone("(555) 555-9845");
+//            customer.setZipCode("01234");
+//
+//            Customer dbCustomer = customerDao.create(customer);
+//            System.out.println(dbCustomer.getFirstName());
+//            dbCustomer = customerDao.findById(dbCustomer.getId());
+//            System.out.println(dbCustomer.getFirstName());
+//            dbCustomer.setEmail("john.adams@wh.gov");
+//            dbCustomer = customerDao.update(dbCustomer);
+//            System.out.println(dbCustomer.getFirstName());
+//            customerDao.delete(dbCustomer.getId());
 
-            Customer customer = new Customer();
-            customer.setFirstName("John");
-            customer.setLastName("Adams");
-            customer.setEmail("jadams.wh.gov");
-            customer.setAddress("1234 Main St");
-            customer.setCity("Arlington");
-            customer.setState("VA");
-            customer.setPhone("(555) 555-9845");
-            customer.setZipCode("01234");
 
-            Customer dbCustomer = customerDao.create(customer);
-            System.out.println(dbCustomer.getFirstName());
-            dbCustomer = customerDao.findById(dbCustomer.getId());
-            System.out.println(dbCustomer.getFirstName());
-            dbCustomer.setEmail("john.adams@wh.gov");
-            dbCustomer = customerDao.update(dbCustomer);
-            System.out.println(dbCustomer.getFirstName());
-            customerDao.delete(dbCustomer.getId());
+            OrderDAO orderDAO = new OrderDAO(connection);
+            Order order = orderDAO.findById(1000);
+            System.out.println(order);
         }catch (SQLException e){
             e.printStackTrace();
         }
