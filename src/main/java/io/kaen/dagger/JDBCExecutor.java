@@ -1,14 +1,12 @@
 package io.kaen.dagger;
 
 import io.kaen.dagger.dao.CustomerDao;
-import io.kaen.dagger.dao.OrderDAO;
-import io.kaen.dagger.model.Customer;
+import io.kaen.dagger.dao.OrderDao;
 import io.kaen.dagger.model.Order;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.List;
 
 public class JDBCExecutor {
     public static void main(String[] args) {
@@ -63,9 +61,14 @@ public class JDBCExecutor {
 //            customerDao.delete(dbCustomer.getId());
 
 
-            OrderDAO orderDAO = new OrderDAO(connection);
-            Order order = orderDAO.findById(1000);
-            System.out.println(order);
+//            OrderDAO orderDAO = new OrderDAO(connection);
+//            Order order = orderDAO.findById(1000);
+//            System.out.println(order);
+
+
+            OrderDao orderDAO = new OrderDao(connection);
+            List<Order> orders = orderDAO.getOrdersForCustomer(789);
+            orders.forEach(System.out::println);
         }catch (SQLException e){
             e.printStackTrace();
         }

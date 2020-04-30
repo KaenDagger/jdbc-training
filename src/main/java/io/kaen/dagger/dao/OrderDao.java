@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class OrderDAO extends DataAccessObject<Order> {
+public class OrderDao extends DataAccessObject<Order> {
 
     private final static String GET_BY_ID = "SELECT c.first_name, c.last_name, c.email, o.order_id, o.creation_date, " +
             "o.total_due, o.status, s.first_name, s.last_name, s.email, ol.quantity, p.code, p.name, p.size, " +
@@ -24,7 +24,7 @@ public class OrderDAO extends DataAccessObject<Order> {
     private static final String GET_FOR_CUST = "SELECT * FROM get_orders_by_customer(?)";
 
 
-    public OrderDAO(Connection connection) {
+    public OrderDao(Connection connection) {
         super(connection);
     }
 
